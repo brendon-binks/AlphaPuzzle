@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class gameModeViewController: UIViewController {
     
     //Variables
     var whichLevel = Int() //Declared and unassigned int variable for later use
+    var audioPlayer = AVAudioPlayer()
     
     //Outlets
     @IBOutlet var levelsButtons: [UIButton]!
@@ -28,6 +30,16 @@ class gameModeViewController: UIViewController {
     //Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "background", ofType: "mp3")!))
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+        catch {
+            print(error)
+        }
+        
 
         // Do any additional setup after loading the view.
     }
@@ -74,11 +86,19 @@ class gameModeViewController: UIViewController {
     @IBAction func exitSegue(_ sender: UIStoryboardSegue) {
         
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let wordView = segue.destination as! wordViewController
-        wordView.whichLevel = whichLevel
+        if segue.identifier == "wordViewSegue" {
+            let wordView = segue.destination as! wordViewController
+            wordView.whichLevel = whichLevel
+        }
+        if segue.identifier == "optionsSegue" {
+            let options = segue.destination as! optionsViewController
+            options.audioPlayer = audioPlayer
+        }
     }
+
     /*
     // MARK: - Navigation
 

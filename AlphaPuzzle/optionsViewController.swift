@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class optionsViewController: UIViewController {
-
     
+    //Variables
+    var audioPlayer = AVAudioPlayer()
+    
+    //Functions
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,24 @@ class optionsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //Event Handlers
+    
+    @IBAction func volumeOnOff(_ sender: UISwitch) {
+        
+        if sender.isOn == false {
+            audioPlayer.stop()
+        }
+        else {
+            audioPlayer.currentTime = 0
+            audioPlayer.play()
+        }
+    }
+    
+    @IBAction func volumeSlider(_ sender: UISlider) {
+        audioPlayer.volume = sender.value
+    }
+    
     
     /*
     // MARK: - Navigation
