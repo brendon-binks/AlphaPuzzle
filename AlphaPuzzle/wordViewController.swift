@@ -12,37 +12,21 @@ import AVFoundation
 class wordViewController: UIViewController {
     
     //Variables
-    
-    var whichLevel = Int()
-    var wordAudio = AVAudioPlayer()
+    var whichLevel = Int() //Declared int type variable for receiving data passed in segue
+    var wordAudio = AVAudioPlayer() //Declared AVAudioPlayer type variable for later use
     
     //Outlets
-
     @IBOutlet weak var wordToSpell: UILabel!
     @IBOutlet weak var wordTitle: UILabel!
     @IBOutlet weak var okButton: UIButton!
     
     
     //Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         levelInformation()
-        do {
-            if whichLevel == 1 {
-                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Pass", ofType: "mp4")!))
-            }
-            else if whichLevel == 2 {
-                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "School", ofType: "mp4")!))
-            }
-            else if whichLevel == 3 {
-                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Student", ofType: "mp4")!))
-            }
-            wordAudio.prepareToPlay()
-        }
-        catch {
-            print(error)
-        }
+        selectAudio()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -51,6 +35,7 @@ class wordViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Custom function which uses whichLevel variable to identify which level is required and display information associated with that level. If no level selected, hide the OK button and prompt player to go back and select level
     func levelInformation() {
         if whichLevel == 1 {
             wordToSpell.text = "Pass"
@@ -73,6 +58,25 @@ class wordViewController: UIViewController {
         }
     }
     
+    //Custom function that works much like levelInformation function. Read whichLevel variable and determine which sound clip to play
+    func selectAudio() {
+        do {
+            if whichLevel == 1 {
+                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Pass", ofType: "mp4")!))
+            }
+            else if whichLevel == 2 {
+                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "School", ofType: "mp4")!))
+            }
+            else if whichLevel == 3 {
+                wordAudio = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "Student", ofType: "mp4")!))
+            }
+            wordAudio.prepareToPlay()
+        }
+        catch {
+            print(error)
+        }
+    }
+    
     //Only perform if segue is for the Game Board. Implemented if statement due to issues with unwinding
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "gameBoardSegue" {
@@ -81,18 +85,20 @@ class wordViewController: UIViewController {
         }
     }
     
+    //Event Handlers
+    
+    //Button to play pronunciation of word. Uses selectAudio() function to determine which sound clip to play. Increase volume to hear over background music.
     @IBAction func playWord(_ sender: UIButton) {
+        selectAudio()
         wordAudio.volume = 125
         wordAudio.play()
     }
     
+    //Exit segue function used to increase whichLevel variable after successfully spelling a word and use levelInformation() function to set up level again
     @IBAction func exitWordSegue(_ sender: UIStoryboardSegue) {
         whichLevel += 1
         levelInformation()
     }
-    
-    //Event Handlers
-    
     
     /*
     // MARK: - Navigation

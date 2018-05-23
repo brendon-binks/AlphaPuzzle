@@ -12,7 +12,7 @@ import AVFoundation
 class optionsViewController: UIViewController {
     
     //Variables
-    var audioPlayer = AVAudioPlayer()
+    var audioPlayer = AVAudioPlayer() //Declared AVAudioPlayer type variable for receiving data passed in segue
     
     //Functions
     override func viewDidLoad() {
@@ -28,6 +28,7 @@ class optionsViewController: UIViewController {
     
     //Event Handlers
     
+    //Switch audio (background music) on/off. If switched off, start the music from the start
     @IBAction func volumeOnOff(_ sender: UISwitch) {
         
         if sender.isOn == false {
@@ -39,6 +40,7 @@ class optionsViewController: UIViewController {
         }
     }
     
+    //Increase of decrease volume
     @IBAction func volumeSlider(_ sender: UISlider) {
         audioPlayer.volume = sender.value
     }

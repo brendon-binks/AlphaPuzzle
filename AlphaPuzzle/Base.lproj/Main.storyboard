@@ -105,7 +105,7 @@
                                             <action selector="handleSelection:" destination="nFK-Qc-VCt" eventType="touchUpInside" id="1XA-zO-6BE"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdN-ZR-Htd">
+                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdN-ZR-Htd">
                                         <rect key="frame" x="100" y="-270" width="175" height="50"/>
                                         <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -116,7 +116,7 @@
                                             <action selector="levelTapped:" destination="nFK-Qc-VCt" eventType="touchUpInside" id="03q-RQ-pCZ"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLI-Td-bdv">
+                                    <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLI-Td-bdv">
                                         <rect key="frame" x="100" y="-270" width="175" height="50"/>
                                         <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -127,7 +127,7 @@
                                             <action selector="levelTapped:" destination="nFK-Qc-VCt" eventType="touchUpInside" id="iUS-tI-lps"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6y-RC-ix8">
+                                    <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6y-RC-ix8">
                                         <rect key="frame" x="100" y="-270" width="175" height="50"/>
                                         <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -172,6 +172,14 @@
                                     <segue destination="YgL-Eg-ucp" kind="show" identifier="optionsSegue" id="qAX-DW-Y9k"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBy-WI-kpt">
+                                <rect key="frame" x="16" y="187" width="343" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.53725490200000003" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -183,6 +191,7 @@
                     </view>
                     <connections>
                         <outlet property="levelSelectionButton" destination="b8A-bn-BOO" id="mGz-zU-sbk"/>
+                        <outlet property="welcomeMessage" destination="ZBy-WI-kpt" id="yEN-k9-s4A"/>
                         <outletCollection property="levelsButtons" destination="xdN-ZR-Htd" collectionClass="NSMutableArray" id="vOV-8M-Ukj"/>
                         <outletCollection property="levelsButtons" destination="cLI-Td-bdv" collectionClass="NSMutableArray" id="gJF-oy-LZj"/>
                         <outletCollection property="levelsButtons" destination="f6y-RC-ix8" collectionClass="NSMutableArray" id="AbY-Hr-PQg"/>
@@ -190,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6O-Fs-iG3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="260" y="141"/>
+            <point key="canvasLocation" x="260" y="139.880059970015"/>
         </scene>
         <!--Word View Controller-->
         <scene sceneID="S8H-lh-do5">
@@ -209,7 +218,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.53725490200000003" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Elh-2Z-eqd">
@@ -217,7 +226,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.96393855760000002" green="1" blue="0.60583150929999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.14901960780000001" green="0.53725490200000003" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnk-g2-A7U">

@@ -11,8 +11,7 @@ import UIKit
 class gameBoardViewController: UIViewController {
     
     //Variables
-    
-    var whichLevel = Int()
+    var whichLevel = Int() //Declared int type variable for receiving data passed in segue
     var imgs : [UIImage] = //Image array used to set correct image according to player turn
         [
             UIImage(named : "P purple")!,//0
@@ -32,17 +31,11 @@ class gameBoardViewController: UIViewController {
             UIImage(named: "C green")!//14
         ]
     
-    var firstButtonSelected = Bool()
-    var secondButtonSelected = Bool()
-    
-    var firstLocation = CGPoint(x: 0, y: 0)
-    var secondLocation = CGPoint(x: 0, y: 0)
-    
+    //Declared UIButton type variables for later use
     var playButtonOne : UIButton!
     var playButtonTwo : UIButton!
     
     //Outlets
-    
     @IBOutlet weak var letterOneButton: UIButton!
     @IBOutlet weak var letterTwoButton: UIButton!
     @IBOutlet weak var letterThreeButton: UIButton!
@@ -64,11 +57,10 @@ class gameBoardViewController: UIViewController {
     @IBOutlet weak var nextLevelButton: UIButton!
     
     //Functions
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        levelTitle.text = "Level \(whichLevel)"
+        levelTitle.text = "Level \(whichLevel)" //Use whicheLevel variable to display correct data in levelTitle label
         
         levelSetup()
     
@@ -80,6 +72,7 @@ class gameBoardViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Custom function to modify button values to indicate button selection
     func updateButtonValues(button: UIButton) -> UIButton {
         button.layer.borderWidth = 5
         button.layer.cornerRadius = 8
@@ -87,7 +80,8 @@ class gameBoardViewController: UIViewController {
         
         return button
     }
-       
+    
+    //Custom function used to set level up. Uses whichLevel variable to to identify which level to display and set up button images and count to the correct options
     func levelSetup() {
         
         if whichLevel == 1 {
@@ -128,6 +122,7 @@ class gameBoardViewController: UIViewController {
         
     }
     
+    //Custom function used to indicate the user has won. Change label to display message and unhide button and said label
     func checkWin() {
         didTheyWin.text = "That is correct!"
         nextLevelButton.isHidden = false
@@ -135,16 +130,18 @@ class gameBoardViewController: UIViewController {
     }
     
     //Event Handlers
-
+    
+    //For letter buttons, place selected button values into previously declared UIButton variable and update values to indicate select using updateButtonValues()
     @IBAction func buttonIsTapped(_ sender: UIButton) {
         playButtonOne = updateButtonValues(button: sender)
     }
     
-    
+    //For blank buttons, place selected button values into previously declared UIButton variable and update values to indicate select using updateButtonValues()
     @IBAction func blankIsTapped(_ sender: UIButton) {
         playButtonTwo = updateButtonValues(button: sender)
     }
     
+    //Button to change the position of letter buttons to the selected blank button to imitate a swap. Hide the blank button and remove borders used to indicate selection. Set tags for use in winCondition event handler and then change values of playButtonOne and playButtonTwo so new swaps can be made.
     @IBAction func swapButtons(_ sender: UIButton) {
         playButtonOne.center = playButtonTwo.center
         playButtonTwo.isHidden = true
@@ -159,6 +156,7 @@ class gameBoardViewController: UIViewController {
         playButtonTwo = nil
     }
     
+    //Check if player has won by reading specific win condition for specific level/word using whichLevel variable. If blank tags match tags of correct letter buttons, then player wins.
     @IBAction func winCondition(_ sender: UIButton) {
         
         if whichLevel == 1 {
@@ -190,6 +188,7 @@ class gameBoardViewController: UIViewController {
         
     }
     
+    //Reset positions of letter buttons if player makes incorrect play. Uses CGPoint coordinates to restore letter buttons back to original positions. Restore blank button tags back to 0 and unhide blank buttons.
     @IBAction func resetBoard(_ sender: UIButton) {
         
         letterOneButton.center = CGPoint(x: 28, y: 351)
