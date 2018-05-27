@@ -36,7 +36,7 @@ class gameModeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /* USED TO RESET USER DEFAULTS IN TESTING
+        /*USED TO RESET USER DEFAULTS IN TESTING
          if let bundleID = Bundle.main.bundleIdentifier {
             UserDefaults.standard.removePersistentDomain(forName: bundleID)
         }*/
@@ -57,15 +57,6 @@ class gameModeViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    //Unhide buttons to produce drop down menu. If the button tag is equal to or less than currentLevel variable, display in drop down menu. Used to ensure user can only proceed to unlocked levels.
-    @IBAction func handleSelection(_ sender: UIButton) {
-        for button in levelsButtons {
-            if button.tag <= currentLevel {
-                button.isHidden = false
-            }
-        }
     }
     
     //Custom function to change welcome message text to current level. If stored user default has a value, display this otherwise display the current level in the current game
@@ -90,6 +81,15 @@ class gameModeViewController: UIViewController {
     
     
     //Event Handlers
+    
+    //Unhide buttons to produce drop down menu. If the button tag is equal to or less than currentLevel variable, display in drop down menu. Used to ensure user can only proceed to unlocked levels.
+    @IBAction func handleSelection(_ sender: UIButton) {
+        for button in levelsButtons {
+            if button.tag <= currentLevel {
+                button.isHidden = false
+            }
+        }
+    }
     
     //Handles event for user clicking on button in drop down menu. Takes enum list uses it in case statement which changes button at top of the list with button clicked on and hides the buttons again
     @IBAction func levelTapped(_ sender: UIButton) {
